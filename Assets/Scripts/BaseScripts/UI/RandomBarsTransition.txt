@@ -1,0 +1,60 @@
+using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
+
+public class RandomBarsTransition : MonoBehaviour
+{
+    public Image image;
+    public float duration = 0.5f;
+    public float fadeDuration = 0.3f; 
+    public int numberOfBars = 20;
+
+    void Start()
+    {
+        if (image == null)
+        {
+            return;
+        }
+
+        float barWidth = image.rectTransform.rect.width / numberOfBars;
+
+        for (int i = 0; i < numberOfBars; i++)
+        {
+            float targetWidth = Random.Range(0.0f, barWidth);
+            RectTransform barRect = CreateBar(i, barWidth, targetWidth);
+            AnimateBar(barRect, targetWidth, i * (duration / numberOfBars));
+        }
+    }
+
+    private RectTransform CreateBar(int index, float initialWidth, float targetWidth)
+    {
+        GameObject barObject = new GameObject("Bar_" + index);
+        RectTransform rectTransform = barObject.AddComponent<RectTransform>();
+        rectTransform.SetParent(image.transform, false);
+
+        float offsetX = image.rectTransform.rect.width / numberOfBars * index;
+        rectTransform.anchoredPosition = new Vector2(offsetX - image.rectTransform.rect.width / 2, 0);
+
+        rectTransform.sizeDelta = new Vector2(initialWidth, image.rectTransform.rect.height);
+
+        Image barImage = barObject.AddComponent<Image>();
+        barImage.color = image.color;
+
+        return rectTransform;
+    }
+
+    private void AnimateBar(RectTransform barRect, float targetWidth, float delay)
+    {
+        barRect.DOSizeDelta(new Vector2(targetWidth, barRect.sizeDelta.y), duration)
+        .SetDelay(delay)
+         .SetEase(Ease.OutQuad)
+           .OnComplete(() => FadeOutBar(barRect));
+    }
+
+    private void FadeOutBar(RectTransform barRect)
+    {
+        Image barImage = barRect.GetComponent<Image>();
+        barImage.DOFade(0f, fadeDuration)
+       .OnComplete(() => Destroy(barRect.gameObject)); 
+    }
+}
