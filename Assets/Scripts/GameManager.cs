@@ -4,9 +4,20 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UI;   
+using UnityEngine.UI;
+
+
+
 public class GameManager : MonoBehaviour
 {
+    [Serializable]
+    public class UserData
+    {
+        public string name;
+        public string email;
+        public string gender; // "male" or "female"
+        public string photoPath;
+    }
     private enum AppState
     {
         Welcome,
@@ -22,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     [Header("UI Panels")]
     public GameObject panelWelcome;
-    public GameObject panelUserCount;
+    //public GameObject panelUserCount;
     public GameObject panelRegistration;
     public GameObject panelRegistration_Disclaimer;
     public GameObject panelCamera;
@@ -101,7 +112,7 @@ public class GameManager : MonoBehaviour
     // New variables for button-based selection  
     private int selectedUserCount = 1;
     private string selectedGender = "male";
-    public Text photoUserCountText;
+    [SerializeField]public Text photoUserCountText;
     public Text photoUserCountText_OnReviewPage;
 
     [Header("Button Sprites")]
@@ -127,16 +138,6 @@ public class GameManager : MonoBehaviour
     public Sprite user_3_SelectedSprite;
     public Sprite user_3_UnselectedSprite;
 
-
-
-    [Serializable]
-    public class UserData
-    {
-        public string name;
-        public string email;
-        public string gender; // "male" or "female"
-        public string photoPath;
-    }
 
     void Start()
     {
@@ -180,7 +181,9 @@ public class GameManager : MonoBehaviour
         btnRegisterNext.onClick.AddListener(OnRegisterNext);
         btnTakePhoto.onClick.AddListener(OnTakePhoto);
         btnRetake.onClick.AddListener(OnRetake);
-        btnPrint.onClick.AddListener(OnPrint);
+
+        //MICHON NOTE: REMOVED PRINT
+        //btnPrint.onClick.AddListener(OnPrint);
 
         btnContinue.onClick.AddListener(OnContinue);
         btnReset.onClick.AddListener(OnReset);
@@ -208,7 +211,6 @@ public class GameManager : MonoBehaviour
         selectedGender = gender;
         UpdateGenderButtons();
     }
-
 
     void UpdateUserCountButtons()
     {
@@ -279,7 +281,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     void SetState(AppState newState)
     {
         currentState = newState;
@@ -290,7 +291,7 @@ public class GameManager : MonoBehaviour
     void UpdatePanels()
     {
         panelWelcome.SetActive(currentState == AppState.Welcome);
-        panelUserCount.SetActive(currentState == AppState.UserCount);
+        //panelUserCount.SetActive(currentState == AppState.UserCount);
         panelRegistration.SetActive(currentState == AppState.Registration);
         panelCamera.SetActive(currentState == AppState.Camera);
         panelReview.SetActive(currentState == AppState.Review);
@@ -326,7 +327,6 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-
 
     void UpdateFinalUI()
     {
@@ -380,7 +380,7 @@ public class GameManager : MonoBehaviour
     public void OnStartGame()
     {
         keytboardGo.SetActive(false);
-        SetState(AppState.UserCount);
+        SetState(AppState.Registration);
     }
 
     public void OnUserCountStart()
@@ -397,6 +397,7 @@ public class GameManager : MonoBehaviour
     {
         panelRegistration_Disclaimer.SetActive(active);
     }
+    
     public void RetakeOnFail_Panel(bool active)
     {
         panelCamera_RetakeOnFail.SetActive(active);
@@ -469,6 +470,7 @@ public class GameManager : MonoBehaviour
 
 
     }
+
     public void OnRegisterBack()
     {
         if (currentUserIndex > 0)
@@ -516,7 +518,6 @@ public class GameManager : MonoBehaviour
         threetwooneImage.SetActive(false);
         keytboardGo.SetActive(false);
     }
-
 
     public void OnTakePhoto()
     {
@@ -725,8 +726,6 @@ public class GameManager : MonoBehaviour
         }
     }
 #endif
-
-
 
     [Serializable]
     public class PrintRequest { public string image_path; public string printer_name; public string scale_mode; public bool landscape; }

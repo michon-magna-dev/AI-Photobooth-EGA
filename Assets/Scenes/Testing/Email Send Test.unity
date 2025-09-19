@@ -306,13 +306,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fromEmail: michon.magna@gmail.com
-  toEmail: michon@magnainnovations.com
-  subject: Test
-  password: PassAsOf2025#325986
-  m_filePath: Assets/StreamingAssets/CapturedPhotos/20250917_131641/asd_131704_20250917_131641.jpg
-  d_title: 
-  d_body: 
-  result: 
+  toEmail: mbojador@gmail.com
+  appPassword: cwbnbtooinxcdxmg
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

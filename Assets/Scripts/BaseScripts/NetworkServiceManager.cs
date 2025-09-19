@@ -114,8 +114,8 @@ public class NetworkServiceManager : MonoBehaviour
 
     void FinishExperience()
     {
-        if (!isProcessingImage)
-            StartCoroutine(ProcessImage());
+        //if (!isProcessingImage)
+        //    StartCoroutine(ProcessImage());
 
         SlideshowManager.GetInstance().ReLoadImages(true);
         HUDManager.GetInstance().ShowScreen(CURRENT_SCREEN.STANDBY);
@@ -137,13 +137,13 @@ public class NetworkServiceManager : MonoBehaviour
         //}
     }
 
-    private IEnumerator ProcessImage()
-    {
-        yield return null;
-        EmailSender.GetInstance.SendEmailThread(receivedEmail, ScreenShotEditable.GetInstance().GetImageTaken());
-        yield return null;
-        PrinterManager.GetInstance().PrintImageThread(ScreenShotEditable.GetInstance().GetImageTaken());
-    }
+    //private IEnumerator ProcessImage()
+    //{
+    //    yield return null;
+    //    EmailSender.GetInstance.SendEmailThread(receivedEmail, ScreenShotEditable.GetInstance().GetImageTaken());
+    //    yield return null;
+    //    PrinterManager.GetInstance().PrintImageThread(ScreenShotEditable.GetInstance().GetImageTaken());
+    //}
 
     #region Debug
 

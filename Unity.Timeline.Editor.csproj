@@ -180,8 +180,8 @@
     <Compile Include="Library\PackageCache\com.unity.timeline@1.7.7\Editor\Utilities\TrackModifier.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@1.7.7\Editor\Utilities\StyleNormalColorOverride.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@1.7.7\Editor\Window\ViewModel\TimelineAssetViewModel.cs" />
-    <Compile Include="Library\PackageCache\com.unity.timeline@1.7.7\Editor\MenuPriority.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@1.7.7\Editor\Playables\ControlPlayableInspector.cs" />
+    <Compile Include="Library\PackageCache\com.unity.timeline@1.7.7\Editor\MenuPriority.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@1.7.7\Editor\Window\ViewModel\TimelineAssetViewModel_versions.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@1.7.7\Editor\Window\TimelineWindow_PlaybackControls.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@1.7.7\Editor\treeview\Drawers\InfiniteTrackDrawer.cs" />
@@ -303,8 +303,8 @@
     <Compile Include="Library\PackageCache\com.unity.timeline@1.7.7\Editor\Attributes\ShortcutAttribute.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@1.7.7\Editor\inspectors\TrackAssetInspector.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@1.7.7\Editor\Utilities\Scopes\PropertyScope.cs" />
-    <Compile Include="Library\PackageCache\com.unity.timeline@1.7.7\Editor\treeview\TimelineDragging.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@1.7.7\Editor\Shortcuts.cs" />
+    <Compile Include="Library\PackageCache\com.unity.timeline@1.7.7\Editor\treeview\TimelineDragging.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@1.7.7\Editor\Utilities\Graphics.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@1.7.7\Editor\inspectors\TimelineInspectorUtility.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@1.7.7\Editor\Manipulators\Utils\EditModeMixUtils.cs" />
@@ -702,6 +702,10 @@
       <HintPath>Library\PackageCache\com.unity.collab-proxy@2.8.2\Lib\Editor\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="DOTweenEditor">
+      <HintPath>Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Plastic.Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@2.8.2\Lib\Editor\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
@@ -714,20 +718,16 @@
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="DOTween">
+      <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.VisualScripting.TextureAssets">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.4\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DOTweenEditor">
-      <HintPath>Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DOTween">
-      <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="nunit.framework">
