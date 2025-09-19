@@ -90,6 +90,7 @@
     <Compile Include="Assets\Scripts\BaseScripts\Animations Scripted\FadeInMask.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Selfie\ScreenCaptureManager.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\UI\FloatingTopic.cs" />
+    <Compile Include="Assets\DebugObj.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Windows\SetDisplayMode.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\IO\PrinterManager.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\RegistrationHandler.cs" />

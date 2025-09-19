@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
     public PhotoManager photoManager;
     public MergeImage mergeImage;
     public SaveDetails saveDetails;
-    
+
 
     [Header("Server Settings")]
     public string pythonServerURL = "http://localhost:5000";
@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
     // New variables for button-based selection  
     private int selectedUserCount = 1;
     private string selectedGender = "male";
-    [SerializeField]public Text photoUserCountText;
+    [SerializeField] public Text photoUserCountText;
     public Text photoUserCountText_OnReviewPage;
 
     [Header("Button Sprites")]
@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour
     void SetupUI()
     {
         // Gender buttons  
-        btnMale.onClick.AddListener(() => OnGenderSelected("male"));  
+        btnMale.onClick.AddListener(() => OnGenderSelected("male"));
         btnFemale.onClick.AddListener(() => OnGenderSelected("female"));
 
         // User count buttons  
@@ -231,7 +231,7 @@ public class GameManager : MonoBehaviour
     }
 
     void UpdateGenderButtons()
-    { 
+    {
         if (btnMale != null)
         {
             btnMale.image.sprite = selectedGender == "male" ? maleSelectedSprite : maleUnselectedSprite;
@@ -246,7 +246,7 @@ public class GameManager : MonoBehaviour
     void UpdateUserNumberImage(int userNo)
     {
 
-        if(totalUsers == 1)
+        if (totalUsers == 1)
         {
             imgUser1.gameObject.SetActive(true);
             imgUser2.gameObject.SetActive(false);
@@ -323,7 +323,7 @@ public class GameManager : MonoBehaviour
                 break;
             case AppState.Final:
                 UpdateFinalUI();
-              
+
                 break;
         }
     }
@@ -336,14 +336,14 @@ public class GameManager : MonoBehaviour
 
             foreach (var register in registeredUsers)
             {
-                saveDetails.AddRegistration(register.name,register.email);
+                saveDetails.AddRegistration(register.name, register.email);
             }
             string savedPath = saveDetails.SaveAllAndClear();
             Debug.Log(savedPath);
         }
         else
         {
-          //  finalResultImage.texture = null;
+            //  finalResultImage.texture = null;
         }
     }
 
@@ -369,10 +369,12 @@ public class GameManager : MonoBehaviour
                 btnPrint.gameObject.SetActive(true);
 
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
-            if (autoPrint)
-            {
-                TryPrintFirstResult(mergedPaths[0]);
-            }
+
+            //Disable Print
+            //if (autoPrint)
+            //{
+            //    TryPrintFirstResult(mergedPaths[0]);
+            //}
 #endif
         }
     }
@@ -397,7 +399,7 @@ public class GameManager : MonoBehaviour
     {
         panelRegistration_Disclaimer.SetActive(active);
     }
-    
+
     public void RetakeOnFail_Panel(bool active)
     {
         panelCamera_RetakeOnFail.SetActive(active);
@@ -409,7 +411,7 @@ public class GameManager : MonoBehaviour
         if (string.IsNullOrEmpty(emailInput.text)) return;
 
         if (!termsToggle.isOn) return;
-       
+
         UserData newUser = new UserData
         {
             name = nameInput.text,
@@ -499,7 +501,7 @@ public class GameManager : MonoBehaviour
             currentUserIndex--;
             UpdateUserNumberImage(currentUserIndex + 1);
 
-            var prevUser = registeredUsers[currentUserIndex]; 
+            var prevUser = registeredUsers[currentUserIndex];
             nameInput.text = prevUser.name;
             emailInput.text = prevUser.email;
             selectedGender = prevUser.gender;
@@ -527,7 +529,7 @@ public class GameManager : MonoBehaviour
 
             threetwooneImage.SetActive(true);
             StartCoroutine(TimeGapForPhoto(registeredUsers[currentUserIndex].name));
-           // photoManager.TakePhoto(registeredUsers[currentUserIndex].name);
+            // photoManager.TakePhoto(registeredUsers[currentUserIndex].name);
         }
     }
 
@@ -547,14 +549,14 @@ public class GameManager : MonoBehaviour
 
     public void OnBackPhotoPage()
     {
-       
+
         if (currentUserIndex > 0)
         {
             currentUserIndex--;
             SetState(AppState.Camera);
         }
         else
-        {     
+        {
             currentUserIndex = totalUsers - 1;
             UpdateUserNumberImage(currentUserIndex + 1);
             SetState(AppState.Registration);
@@ -716,14 +718,15 @@ public class GameManager : MonoBehaviour
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
     void TryPrintFirstResult(string imagePath)
     {
-        try
-        {
-            PrintHelper.PrintImage(imagePath, printerName, printScaleMode, landscape: printLandscape);
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError("Printing failed: " + ex.Message);
-        }
+        Debug.LogWarning("Attemted to print image: " + imagePath);
+        //try
+        //{
+        //    PrintHelper.PrintImage(imagePath, printerName, printScaleMode, landscape: printLandscape);
+        //}
+        //catch (Exception ex)
+        //{
+        //    Debug.LogError("Printing failed: " + ex.Message);
+        //}
     }
 #endif
 
@@ -775,7 +778,7 @@ public class GameManager : MonoBehaviour
             }
         }
         Invoke("ActivePrintButton", 20f);
-       // Invoke(nameof(ActivePrintButton), 6f);
+        // Invoke(nameof(ActivePrintButton), 6f);
     }
 
     void ActivePrintButton()
@@ -796,7 +799,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-  
+
     /// /////////////////////////////////////////////////////////////////
 
     private string GetPreferredSequenceFromUsers()

@@ -16,7 +16,7 @@ public class MergeImage : MonoBehaviour
     public string outputFolder = "FinalPrintOut";
     public int jpegQuality = 100;
 
-
+    //Dev note: If changing overlayTexture, make sure to enable Read/Write
     public int targetWidth = 1200; // final pixel width
     public int targetHeight = 1800; // final pixel height
 
