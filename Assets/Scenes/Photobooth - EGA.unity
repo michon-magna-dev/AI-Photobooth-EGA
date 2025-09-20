@@ -595,7 +595,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &40141928
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10161,6 +10161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelWelcome: {fileID: 331484424}
+  panelPromptSelect: {fileID: 82711711}
   panelRegistration: {fileID: 149472254}
   panelRegistration_Disclaimer: {fileID: 2119005269}
   panelCamera: {fileID: 1239802442}
@@ -10169,6 +10170,7 @@ MonoBehaviour:
   panelProcessing: {fileID: 33343099}
   panelFinal: {fileID: 735618820}
   btnStartGame: {fileID: 971656993}
+  btnprompSelect: {fileID: 40141929}
   btnUser1: {fileID: 1675345879}
   btnUser2: {fileID: 1122896950}
   btnUser3: {fileID: 1650179617}

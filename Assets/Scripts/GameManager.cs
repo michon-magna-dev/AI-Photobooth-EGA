@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
         Welcome,
         UserCount,
         Registration,
+        PromptSelect,
         Camera,
         Review,
         Processing,
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
     [Header("UI Panels")]
     public GameObject panelWelcome;
     //public GameObject panelUserCount;
+    public GameObject panelPromptSelect;
     public GameObject panelRegistration;
     public GameObject panelRegistration_Disclaimer;
     public GameObject panelCamera;
@@ -44,6 +46,9 @@ public class GameManager : MonoBehaviour
 
     [Header("Welcome Panel")]
     public Button btnStartGame;
+
+    [Header("Prompt Selection Panel")]
+    public Button btnprompSelect;
 
     [Header("User Count Panel")]
     //public Dropdown userCountDropdown;
@@ -176,8 +181,8 @@ public class GameManager : MonoBehaviour
         btnUser3.onClick.AddListener(() => OnUserCountSelected(3));
         btnUserCountStart.onClick.AddListener(OnUserCountStart);
 
-
         btnStartGame.onClick.AddListener(OnStartGame);
+        btnprompSelect.onClick.AddListener(OnPromptSelect);
         btnRegisterNext.onClick.AddListener(OnRegisterNext);
         btnTakePhoto.onClick.AddListener(OnTakePhoto);
         btnRetake.onClick.AddListener(OnRetake);
@@ -292,6 +297,7 @@ public class GameManager : MonoBehaviour
     {
         panelWelcome.SetActive(currentState == AppState.Welcome);
         //panelUserCount.SetActive(currentState == AppState.UserCount);
+        panelPromptSelect.SetActive(currentState == AppState.PromptSelect);
         panelRegistration.SetActive(currentState == AppState.Registration);
         panelCamera.SetActive(currentState == AppState.Camera);
         panelReview.SetActive(currentState == AppState.Review);
@@ -384,6 +390,10 @@ public class GameManager : MonoBehaviour
         keytboardGo.SetActive(false);
         SetState(AppState.Registration);
     }
+    public void OnPromptSelect()
+    {
+        SetState(AppState.Camera);
+    }
 
     public void OnUserCountStart()
     {
@@ -463,7 +473,8 @@ public class GameManager : MonoBehaviour
             // All users registered, go to camera  
             currentUserIndex = 0;
             // Update_ShowPhotoUserCount(); // Fix typo if this method exists  
-            SetState(AppState.Camera);
+            //SetState(AppState.Camera);
+            SetState(AppState.PromptSelect);
         }
         Upadte_ShowPhotoUserCount();
 
