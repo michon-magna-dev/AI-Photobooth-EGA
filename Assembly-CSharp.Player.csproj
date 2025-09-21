@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\BaseScripts\Server\AppManagerClient.cs" />
+    <Compile Include="Assets\EmailPostHandler.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\UDP\ServerNetworkManager.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\UI\SphereButtonManager.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\UI\FadeInImage.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Assets\Scripts\BaseScripts\Settings\SettingOption.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\PhotoGridMosaic\PhotoObjBehaviour.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Network\UDP\UDPSend.cs" />
+    <Compile Include="Assets\Scripts\Mail\MailSingleton.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Path Finders\VideoPathLoader.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Animations Scripted\FadeInMask.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Selfie\ScreenCaptureManager.cs" />
@@ -114,6 +116,7 @@
     <Compile Include="Assets\Scripts\BaseScripts\Base Classes\Singletons.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Animations Scripted\ShakeCamera.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Mail\SendMailDemo.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Input\TouchDetector.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Selfie\CountdownTimer.cs" />
     <Compile Include="Assets\Scripts\Afzal\PrintTestManager.cs" />
@@ -125,6 +128,7 @@
     <Compile Include="Assets\Scripts\BaseScripts\Sphere Wireframe\Vertex\VertexPoints.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Sphere Wireframe\Vertex\VertexPointBehaviour.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Display\MultipleDisplay.cs" />
+    <Compile Include="Assets\Scripts\Mail\MailSender.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\IO\EmailSender.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Network\OSC\OSC.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Animations Scripted\FadeInSprite.cs" />

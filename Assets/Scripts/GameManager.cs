@@ -149,7 +149,11 @@ public class GameManager : MonoBehaviour
     public Sprite user_3_SelectedSprite;
     public Sprite user_3_UnselectedSprite;
 
+    #region Getters
     public ImageSelectionPromptHandler.PromptType GetSelectedGender => selectedGender.Equals("male") ? ImageSelectionPromptHandler.PromptType.Male : ImageSelectionPromptHandler.PromptType.Female;
+    public string GetUserEmail => registeredUsers[0].email;
+    public string GetUserPhotoPath => registeredUsers[0].photoPath;
+    #endregion
 
     void Awake()
     {
@@ -411,6 +415,7 @@ public class GameManager : MonoBehaviour
         keytboardGo.SetActive(false);
         SetState(AppState.Registration);
     }
+   
     public void OnPromptSelect()
     {
         SetState(AppState.Camera);
@@ -867,6 +872,7 @@ public class GameManager : MonoBehaviour
         public int prompt_index;
         public string preferred_sequence; // optional
     }
+
 
     [Serializable]
     public class ProcessUser
