@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\BaseScripts\Display\MultipleCamera.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\UI\SphereAnimation.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Sphere Wireframe\Face Gen\FaceGenManager.cs" />
+    <Compile Include="Assets\Scripts\GoogleDriveHandler.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Sphere Wireframe\Face Gen\VertexDetection.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Animations Scripted\ImageScaler.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Sphere Wireframe\Face Gen\TriangleMesh.cs" />
@@ -86,11 +87,9 @@
     <Compile Include="Assets\Scripts\BaseScripts\PhotoGridMosaic\PhotoObjBehaviour.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Network\UDP\UDPSend.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Path Finders\VideoPathLoader.cs" />
-    <Compile Include="Assets\GoogleDriveHandler.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Animations Scripted\FadeInMask.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Selfie\ScreenCaptureManager.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\UI\FloatingTopic.cs" />
-    <Compile Include="Assets\DebugObj.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Windows\SetDisplayMode.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\IO\PrinterManager.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\RegistrationHandler.cs" />
@@ -98,7 +97,6 @@
     <Compile Include="Assets\Scripts\BaseScripts\Network\OSC\OSCReceiver.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\UDP\UDPReceivedManager.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\KeyboardEnabler.cs" />
-    <Compile Include="Assets\QrGenerationHandler.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Utilities\ReferenceObj.cs" />
     <Compile Include="Assets\OSK\Assets\Scripts\KeyboardScript.cs" />
     <Compile Include="Assets\Scripts\Afzal\SmoothImageRotator.cs" />
@@ -125,7 +123,6 @@
     <Compile Include="Assets\Scripts\Afzal\PhotoManager.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Path Finders\TimeHandler.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Sphere Wireframe\Vertex\VertexPoints.cs" />
-    <Compile Include="Assets\ImageSelectionPromptHandler.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Sphere Wireframe\Vertex\VertexPointBehaviour.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Display\MultipleDisplay.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\IO\EmailSender.cs" />
@@ -138,6 +135,7 @@
     <Compile Include="Assets\Scripts\Afzal\Keyboard\ClickSelect.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Static\PathHelper.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\UI\SphereTopicGenerator.cs" />
+    <Compile Include="Assets\Scripts\QrGenerationHandler.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\PhotoGridMosaic\TargetPhoto.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\NetworkServiceManager.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Debug\DebugBehaviour.cs" />
@@ -152,7 +150,9 @@
     <Compile Include="Assets\Scripts\BaseScripts\UI\PanelAnimation.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Sphere Wireframe\Face Gen\TriangleAlphaLoop.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Utilities\ButtonTMPUtil.cs" />
+    <Compile Include="Assets\Scripts\DebugObj.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\IO\FileIOUtility.cs" />
+    <Compile Include="Assets\Scripts\ImageSelectionPromptHandler.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Settings\BGOptions.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Network\OSC\OSC_Sender.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\Sphere Wireframe\Face Gen\CreateMesh.cs" />
