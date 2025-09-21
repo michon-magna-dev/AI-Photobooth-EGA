@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -6,16 +7,59 @@ using UnityGoogleDrive;
 
 public class GoogleDriveHandler : MonoBehaviour
 {
+    public QrGenerationHandler qrCodeHandler;
+
     public string UploadFilePath;
     public string result;
     public string url;
     private GoogleDriveFiles.CreateRequest request;
+    public bool debug = false;
+    public void Start()
+    {
+        debug = false;
+        GameManager.Instance.OnPhotoProcessed += UploadPhotoToDrive;
+    }
+
+    private void UploadPhotoToDrive(string p_imagePath)
+    {
+        UploadTo(true, p_imagePath);
+        //throw new NotImplementedException();
+    }
 
     public void UploadPhotoToDrive()
     {
         UploadTo(false);
     }
 
+    private void UploadTo(bool toAppData, string p_filePath)
+    {
+        UploadFilePath = p_filePath;
+        Debug.LogWarning($"Uploading App=> {p_filePath}");
+        string filename = Path.GetFileName(p_filePath);
+        var content = File.ReadAllBytes(p_filePath);
+        if (content == null || content.Length == 0) return;
+
+        // Create the file object
+        var file = new UnityGoogleDrive.Data.File
+        {
+            Name = filename,
+            Content = content
+        };
+
+        // Set target folder
+        string targetFolderId = toAppData
+            ? "14LZ_a0FGYqsZZs3BEdRaUO-XKrztyNIk"   // Your shared folder ID
+            : "19WGNPqF7vc1NbVCeDp2gBgdulr2psR52";  // Replace with another folder if needed
+
+        file.Parents = new List<string> { targetFolderId };
+
+        // Create upload request
+        var request = GoogleDriveFiles.Create(file);
+        request.Fields = new List<string> { "id", "name", "size", "createdTime", "webViewLink" };
+
+        // Send upload request
+        request.Send().OnDone += PrintResult;
+    }
     private void UploadTo(bool toAppData)
     {
         string filename = Path.GetFileName(UploadFilePath);
@@ -31,8 +75,8 @@ public class GoogleDriveHandler : MonoBehaviour
 
         // Set target folder
         string targetFolderId = toAppData
-            ? "14LZ_a0FGYqsZZs3BEdRaUO-XKrztyNIk"  // Your shared folder ID
-            : "19WGNPqF7vc1NbVCeDp2gBgdulr2psR52";          // Replace with another folder if needed
+            ? "14LZ_a0FGYqsZZs3BEdRaUO-XKrztyNIk"   // Your shared folder ID
+            : "19WGNPqF7vc1NbVCeDp2gBgdulr2psR52";  // Replace with another folder if needed
 
         file.Parents = new List<string> { targetFolderId };
 
@@ -82,13 +126,17 @@ public class GoogleDriveHandler : MonoBehaviour
         // Debug.Log("DO QR CODE SCRIPT");
         //https://drive.google.com/file/d/1QKXSExhHtI-56OhHhw9f2C9XNCU50feO/view?usp=drive_link
         url = "https://drive.google.com/file/d/" + file.Id + "/view?usp=share_link";        //qrcode link
-        
+        qrCodeHandler.GenerateAndDisplayQR(url);
         // Debug.Log(url + "     " + file.Name);
     }
 
 
     protected void OnGUI()
     {
+        if (!debug)
+        {
+            return;
+        }
         if (request != null && request.IsRunning)
         {
             GUILayout.Label($"Loading: {request.Progress:P2}");

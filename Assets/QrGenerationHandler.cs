@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
 using ZXing;
@@ -12,7 +11,7 @@ public class QrGenerationHandler : MonoBehaviour
     public int qrSize = 256;
 
     [Header("UI Reference")]
-    public RawImage targetRawImage; // Drag your RawImage here in the Inspector
+    public RawImage targetRawImage; 
 
     void Start()
     {

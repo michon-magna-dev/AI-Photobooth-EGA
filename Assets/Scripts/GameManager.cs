@@ -10,6 +10,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager _instance;
+    public static GameManager Instance => _instance;
     [Serializable]
     public class UserData
     {
@@ -32,6 +34,8 @@ public class GameManager : MonoBehaviour
     }
 
     private AppState currentState;
+
+    public Action<string> OnPhotoProcessed;
 
     [Header("UI Panels")]
     public GameObject panelWelcome;
@@ -118,7 +122,7 @@ public class GameManager : MonoBehaviour
 
     // New variables for button-based selection  
     private int selectedUserCount = 1;
-    private string selectedGender = "male";
+    [SerializeField] string selectedGender = "male";
     [SerializeField] public Text photoUserCountText;
     public Text photoUserCountText_OnReviewPage;
 
@@ -145,6 +149,20 @@ public class GameManager : MonoBehaviour
     public Sprite user_3_SelectedSprite;
     public Sprite user_3_UnselectedSprite;
 
+    public ImageSelectionPromptHandler.PromptType GetSelectedGender => selectedGender.Equals("male") ? ImageSelectionPromptHandler.PromptType.Male : ImageSelectionPromptHandler.PromptType.Female;
+
+    void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            _instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+    }
 
     void Start()
     {
@@ -660,7 +678,8 @@ public class GameManager : MonoBehaviour
     IEnumerator ProcessPhotosCoroutine()
     {
         int prompt_selected = -1;
-        prompt_selected = imageSelectionPromptHandler.selectedIndex;
+        prompt_selected = imageSelectionPromptHandler.SelectedIndex;
+
         if (prompt_selected == -1)
         {
             Debug.LogError($"Prompt not Selected");
@@ -704,6 +723,8 @@ public class GameManager : MonoBehaviour
 
                 if (response.success)
                 {
+                    string imagePath = response.output_paths[0];
+                    OnPhotoProcessed?.Invoke(imagePath);
                     resultImagePaths = response.output_paths;
                     currentResultIndex = 0;
                     SetState(AppState.Final);
