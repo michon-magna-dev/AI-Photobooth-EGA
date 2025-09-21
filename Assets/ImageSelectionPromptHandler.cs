@@ -7,6 +7,7 @@ public class ImageSelectionPromptHandler : MonoBehaviour
     public Transform selectionTransform;
     public Transform[] selectPositions = new Transform[3];
     public int selectedIndex = 0;   
+
     // Update is called once per frame
     void Update()
     {

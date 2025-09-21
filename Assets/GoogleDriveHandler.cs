@@ -15,6 +15,7 @@ public class GoogleDriveHandler : MonoBehaviour
     {
         UploadTo(false);
     }
+
     private void UploadTo(bool toAppData)
     {
         string filename = Path.GetFileName(UploadFilePath);
