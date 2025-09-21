@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     {
         public string name;
         public string email;
+        public string contactNumber;
         public string gender; // "male" or "female"
         public string photoPath;
     }
@@ -64,6 +65,7 @@ public class GameManager : MonoBehaviour
 
     public InputField nameInput;
     public InputField emailInput;
+    public InputField contactInput;
     //public Dropdown genderDropdown;
     public Button btnMale;
     public Button btnFemale;
@@ -92,7 +94,6 @@ public class GameManager : MonoBehaviour
     public PhotoManager photoManager;
     public MergeImage mergeImage;
     public SaveDetails saveDetails;
-
 
     [Header("Server Settings")]
     public string pythonServerURL = "http://localhost:5000";
@@ -322,6 +323,7 @@ public class GameManager : MonoBehaviour
                     nameInput.text = "";
                     if (emailInput != null) emailInput.text = "";
                     selectedGender = "male";
+                    contactInput.text = "";
                     UpdateGenderButtons();
                     UpdateUserNumberImage(currentResultIndex + 1);
                     if (termsToggle != null) termsToggle.isOn = false;
@@ -419,17 +421,17 @@ public class GameManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(nameInput.text)) return;
         if (string.IsNullOrEmpty(emailInput.text)) return;
+        if (string.IsNullOrEmpty(contactInput.text)) return;
 
         if (!termsToggle.isOn) return;
 
         UserData newUser = new UserData
         {
             name = nameInput.text,
+            contactNumber = contactInput.text,
             email = emailInput.text,
             gender = selectedGender
         };
-
-
 
         // save/update the current user's data first  
         if (currentUserIndex < registeredUsers.Count)
@@ -454,6 +456,7 @@ public class GameManager : MonoBehaviour
                 var nextUser = registeredUsers[currentUserIndex];
                 nameInput.text = nextUser.name;
                 emailInput.text = nextUser.email;
+                contactInput.text = nextUser.contactNumber;
                 selectedGender = nextUser.gender;
                 UpdateGenderButtons();
                 if (termsToggle != null) termsToggle.isOn = true; // They already accepted  
@@ -463,6 +466,7 @@ public class GameManager : MonoBehaviour
                 // Clear form for new user  
                 nameInput.text = "";
                 emailInput.text = "";
+                contactInput.text = "";
                 selectedGender = "male";
                 UpdateGenderButtons();
                 if (termsToggle != null) termsToggle.isOn = false;
@@ -514,6 +518,7 @@ public class GameManager : MonoBehaviour
 
             var prevUser = registeredUsers[currentUserIndex];
             nameInput.text = prevUser.name;
+            contactInput.text = prevUser.contactNumber;
             emailInput.text = prevUser.email;
             selectedGender = prevUser.gender;
 
@@ -575,6 +580,7 @@ public class GameManager : MonoBehaviour
             var prevUser = registeredUsers[currentUserIndex];
             nameInput.text = prevUser.name;
             emailInput.text = prevUser.email;
+            contactInput.text = prevUser.contactNumber;
             selectedGender = prevUser.gender;
 
             UpdateGenderButtons();
@@ -620,6 +626,7 @@ public class GameManager : MonoBehaviour
         nameInput.text = "";
         if (emailInput != null) emailInput.text = "";
         selectedUserCount = 1;
+        contactInput.text = "";
         selectedGender = "male";
         termsToggle.isOn = false;
 

@@ -6,7 +6,7 @@ public class ImageSelectionPromptHandler : MonoBehaviour
 {
     public Transform selectionTransform;
     public Transform[] selectPositions = new Transform[3];
-
+    public int selectedIndex = 0;   
     // Update is called once per frame
     void Update()
     {
@@ -24,9 +24,10 @@ public class ImageSelectionPromptHandler : MonoBehaviour
         }
     }
 
-    public void MoveSelection(int index)
+    public void MoveSelection(int p_index)
     {
-        if (index < 0 || index >= selectPositions.Length) return;
-        selectionTransform.position = selectPositions[index].position;
+        if (p_index < 0 || p_index >= selectPositions.Length) return;
+        selectionTransform.position = selectPositions[p_index].position;
+        selectedIndex = p_index;
     }
 }
