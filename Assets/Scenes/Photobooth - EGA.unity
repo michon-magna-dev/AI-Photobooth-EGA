@@ -826,6 +826,7 @@ Transform:
   - {fileID: 185500117}
   - {fileID: 1666213654}
   - {fileID: 78557172}
+  - {fileID: 961771341}
   - {fileID: 673432320}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6007,6 +6008,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showInEditorPlayMode: 0
+--- !u!1 &961771340
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 961771341}
+  - component: {fileID: 961771342}
+  m_Layer: 0
+  m_Name: Google Drive Upload
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &961771341
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961771340}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 51149525}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &961771342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961771340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8b9ca82474c4941930108df5ea8c73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UploadFilePath: 
+  result: 
+  url: 
 --- !u!1 &971656991
 GameObject:
   m_ObjectHideFlags: 0
@@ -10515,6 +10563,7 @@ MonoBehaviour:
   finalResultImage: {fileID: 360191110}
   btnReset: {fileID: 596791203}
   btnPrint: {fileID: 887696971}
+  imageSelectionPromptHandler: {fileID: 82711715}
   photoManager: {fileID: 1911302823}
   mergeImage: {fileID: 185500116}
   saveDetails: {fileID: 316404918}

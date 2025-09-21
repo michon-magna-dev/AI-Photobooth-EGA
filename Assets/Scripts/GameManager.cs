@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
     //private List<string> mergedImagePaths = new List<string>(); //Optional to display from array list
 
     [Header("References")]
+    public ImageSelectionPromptHandler imageSelectionPromptHandler;
     public PhotoManager photoManager;
     public MergeImage mergeImage;
     public SaveDetails saveDetails;
@@ -658,10 +659,20 @@ public class GameManager : MonoBehaviour
 
     IEnumerator ProcessPhotosCoroutine()
     {
+        int prompt_selected = -1;
+        prompt_selected = imageSelectionPromptHandler.selectedIndex;
+        if (prompt_selected == -1)
+        {
+            Debug.LogError($"Prompt not Selected");
+            prompt_selected = 0;
+        }
+        //prompt_selected = imageSelectionPromptHandler.selectedIndex;
+
         ProcessRequest request = new ProcessRequest
         {
             session_id = sessionID,
             users = new List<ProcessUser>(),
+            prompt_index = prompt_selected,
             preferred_sequence = GetPreferredSequenceFromUsers() // optional: remove if you want backend to infer only
         };
 
@@ -832,6 +843,7 @@ public class GameManager : MonoBehaviour
     {
         public string session_id;
         public List<ProcessUser> users;
+        public int prompt_index;
         public string preferred_sequence; // optional
     }
 
