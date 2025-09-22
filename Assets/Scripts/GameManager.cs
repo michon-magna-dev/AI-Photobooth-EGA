@@ -554,7 +554,7 @@ public class GameManager : MonoBehaviour
         {
             registeredUsers.Clear();
             currentUserIndex = 0;
-            SetState(AppState.UserCount);
+            SetState(AppState.Welcome);
         }
 
         threetwooneImage.SetActive(false);
