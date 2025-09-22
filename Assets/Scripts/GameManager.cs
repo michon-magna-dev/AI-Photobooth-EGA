@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
 
     public Action<string> OnPhotoProcessed;
 
+    public string lastMergedImage;
+
     [Header("UI Panels")]
     public GameObject panelWelcome;
     //public GameObject panelUserCount;
@@ -368,8 +370,10 @@ public class GameManager : MonoBehaviour
             foreach (var register in registeredUsers)
             {
                 //saveDetails.AddRegistration(register.name, register.email);
-                saveDetails.AddRegistration(register.name, register.email,register.contactNumber);
+                saveDetails.AddRegistration(register.name, register.email, register.contactNumber);
             }
+
+
             string savedPath = saveDetails.SaveAllAndClear();
             Debug.Log(savedPath);
         }
@@ -388,7 +392,8 @@ public class GameManager : MonoBehaviour
         }
 
         List<string> mergedPaths = mergeImage.MergeMultipleImages(resultImagePaths);
-
+        lastMergedImage = mergedPaths[0];
+        OnPhotoProcessed?.Invoke(mergedPaths[0]);
         //mergedImagePaths = mergedPaths; //Optional to display from array list
 
         if (mergedPaths.Count > 0)
@@ -396,7 +401,7 @@ public class GameManager : MonoBehaviour
             //DisplayResultImage(mergedPaths[currentResultIndex]);
             //StartCoroutine(LoadAndDisplayResult(mergedPaths[currentResultIndex]));
             imagePathToPrint = mergedPaths[currentResultIndex];
-
+            Debug.LogAssertion($"image to print {imagePathToPrint}");
             if (btnPrint != null)
                 btnPrint.gameObject.SetActive(true);
 
@@ -416,7 +421,7 @@ public class GameManager : MonoBehaviour
         keytboardGo.SetActive(false);
         SetState(AppState.Registration);
     }
-   
+
     public void OnPromptSelect()
     {
         SetState(AppState.Camera);
@@ -730,7 +735,7 @@ public class GameManager : MonoBehaviour
                 if (response.success)
                 {
                     string imagePath = response.output_paths[0];
-                    OnPhotoProcessed?.Invoke(imagePath);
+                    //OnPhotoProcessed?.Invoke(imagePath);// this gives the correct path.. we need the merged one.
                     resultImagePaths = response.output_paths;
                     currentResultIndex = 0;
                     SetState(AppState.Final);

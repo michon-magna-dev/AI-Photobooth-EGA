@@ -29,7 +29,7 @@ public class EmailPostHandler : MonoBehaviour
     public void SendCurrentUserEmail()
     {
         var emailReceiver = GameManager.Instance.GetUserEmail;
-        var photoPath = GameManager.Instance.GetUserPhotoPath;
+        var photoPath = GameManager.Instance.lastMergedImage;
         SendEmail(emailReceiver, photoPath);
     }
 

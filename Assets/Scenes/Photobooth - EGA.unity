@@ -1133,9 +1133,9 @@ MonoBehaviour:
   - {fileID: 237629384}
   selectedIndex: 0
   maleSprites:
-  - {fileID: 21300000, guid: cced4df694425194494e9e11ccfced3b, type: 3}
-  - {fileID: 21300000, guid: 38237e6839cb2a043adf96d95eadad39, type: 3}
-  - {fileID: 21300000, guid: 6012ac079baa3f7409938977e85e2eeb, type: 3}
+  - {fileID: 21300000, guid: 2ac49b3ff3c3566429eb026660c710d5, type: 3}
+  - {fileID: 21300000, guid: 4b86603353e29414eae1c15c1adff736, type: 3}
+  - {fileID: 21300000, guid: 01b3e2ee3c5924b4b8b0794af3cb103e, type: 3}
   femaleSprites:
   - {fileID: 21300000, guid: 38a585f5608e3e24587687e562440fa7, type: 3}
   - {fileID: 21300000, guid: dae201dbf2ba139449dcb5c8e09b4498, type: 3}
