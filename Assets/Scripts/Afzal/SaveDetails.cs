@@ -12,6 +12,8 @@ public class SaveDetails : MonoBehaviour
     {
         public string name;
         public string email;
+        public string contact;
+
         public string timestamp;
     }
 
@@ -52,6 +54,20 @@ public class SaveDetails : MonoBehaviour
         {
             name = name ?? "",
             email = email ?? "",
+
+            //timestamp = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss") // UTC; change to Local if desired
+            timestamp = DateTime.UtcNow.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss") // UTC; change to Local if desired
+        };
+        pendingRegistrations.Add(reg);
+    }
+    public void AddRegistration(string name, string email, string contact)
+    {
+        if (string.IsNullOrEmpty(name) && string.IsNullOrEmpty(email)) return;
+        var reg = new Registration
+        {
+            name = name ?? "",
+            email = email ?? "",
+            contact = contact ?? "",
             //timestamp = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss") // UTC; change to Local if desired
             timestamp = DateTime.UtcNow.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss") // UTC; change to Local if desired
         };
@@ -67,6 +83,7 @@ public class SaveDetails : MonoBehaviour
     // Save all pending registrations according to saveMode. Returns path(s) written.
     // If appendToMaster = true (or saveMode==AppendToMaster), will append to master file and return master path.
     // If saveMode==NewFilePerSession, will create a timestamped CSV and return its path.
+
     public string SaveAllRegistrations()
     {
         lock (fileLock)
@@ -94,7 +111,7 @@ public class SaveDetails : MonoBehaviour
                 {
                     foreach (var r in pendingRegistrations)
                     {
-                        sw.WriteLine($"{EscapeCsvField(r.name)},{EscapeCsvField(r.email)},{EscapeCsvField(r.timestamp)}");
+                        sw.WriteLine($"{EscapeCsvField(r.name)},{EscapeCsvField(r.email)},{EscapeCsvField(r.contact)},{EscapeCsvField(r.timestamp)}");
                     }
                 }
 
@@ -112,7 +129,7 @@ public class SaveDetails : MonoBehaviour
                 {
                     if (includeHeader)
                     {
-                        sw.WriteLine("Name,Email,Timestamp");
+                        sw.WriteLine("Name,Email,Contact,Timestamp");
                     }
                     foreach (var r in pendingRegistrations)
                     {
@@ -147,7 +164,7 @@ public class SaveDetails : MonoBehaviour
     private void WriteBomAndHeader(string path)
     {
         byte[] bom = new byte[] { 0xEF, 0xBB, 0xBF };
-        string header = "Name,Email,Timestamp\r\n";
+        string header = "Name,Email,Contact,Timestamp\r\n";
         using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
         {
             fs.Write(bom, 0, bom.Length);

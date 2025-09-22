@@ -367,7 +367,8 @@ public class GameManager : MonoBehaviour
 
             foreach (var register in registeredUsers)
             {
-                saveDetails.AddRegistration(register.name, register.email);
+                //saveDetails.AddRegistration(register.name, register.email);
+                saveDetails.AddRegistration(register.name, register.email,register.contactNumber);
             }
             string savedPath = saveDetails.SaveAllAndClear();
             Debug.Log(savedPath);
