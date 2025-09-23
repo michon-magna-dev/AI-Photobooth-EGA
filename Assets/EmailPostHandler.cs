@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -7,7 +8,7 @@ public class EmailPostHandler : MonoBehaviour
 {
     [SerializeField] string pythonServerURL = "http://localhost:5000";
     [SerializeField] bool isSendingEmail;
-
+    public bool isInternetEnabled;
     void Start()
     {
         isSendingEmail = false;
@@ -24,8 +25,12 @@ public class EmailPostHandler : MonoBehaviour
             }
         }
 #endif
+        isInternetEnabled = CheckInternetConnection();
     }
-
+    public bool CheckInternetConnection()
+    {
+        return !(Application.internetReachability == NetworkReachability.NotReachable);
+    }
     public void SendCurrentUserEmail()
     {
         var emailReceiver = GameManager.Instance.GetUserEmail;
@@ -68,20 +73,30 @@ public class EmailPostHandler : MonoBehaviour
 
                 if (response.success)
                 {
-                    Debug.LogAssertion("Email Success: " + response.message);
+                    UnityEngine.Debug.LogAssertion("Email Success: " + response.message);
                 }
                 else
                 {
-                    Debug.LogAssertion("Email failed: " + response.message);
+                    UnityEngine.Debug.LogAssertion("Email failed: " + response.message);
                 }
                 isSendingEmail = false;
             }
             else
             {
-                Debug.LogAssertion("Email error: " + webRequest.error);
+                UnityEngine.Debug.LogAssertion("Email error: " + webRequest.error);
                 isSendingEmail = false;
             }
         }
+    }
+    protected void OnGUI()
+    {
+        if (!isInternetEnabled)
+        {
+            GUILayout.TextField("Internet Disconnected");
+            GUILayout.Label($"Please Contact Engineer.");
+            return;
+        }
+
     }
 }
 [Serializable]
