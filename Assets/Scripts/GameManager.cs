@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     public Action<string> OnPhotoProcessed;
 
     public string lastMergedImage;
+    public string lastCurrentFileName;
 
     [Header("UI Panels")]
     public GameObject panelWelcome;
@@ -735,6 +736,7 @@ public class GameManager : MonoBehaviour
                 if (response.success)
                 {
                     string imagePath = response.output_paths[0];
+                    lastCurrentFileName = imagePath;
                     //OnPhotoProcessed?.Invoke(imagePath);// this gives the correct path.. we need the merged one.
                     resultImagePaths = response.output_paths;
                     currentResultIndex = 0;

@@ -36,13 +36,14 @@ public class GoogleDriveHandler : MonoBehaviour
         UploadFilePath = p_filePath;
         Debug.LogWarning($"Uploading App=> {p_filePath}");
         string filename = Path.GetFileName(p_filePath);
+        var userFileName = Path.GetFileName(GameManager.Instance.lastCurrentFileName);
         var content = File.ReadAllBytes(p_filePath);
         if (content == null || content.Length == 0) return;
 
         // Create the file object
         var file = new UnityGoogleDrive.Data.File
         {
-            Name = filename,
+            Name = userFileName,
             Content = content
         };
 
